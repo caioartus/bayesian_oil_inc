@@ -1,0 +1,72 @@
+html, body {
+  margin: 0;
+  height: 100%;
+  background: #1a1c2c;
+  overflow: hidden;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+canvas {
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  outline: none;
+  box-shadow: 0 0 0 4px #333c57, 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+#touch {
+  display: none;
+  width: 100%;
+  max-width: 640px;
+  padding: 0 16px;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+
+#touch .pad { display: flex; gap: 14px; }
+
+#touch button {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 3px solid #1a1c2c;
+  background: #94b0c2;
+  color: #1a1c2c;
+  font: bold 22px monospace;
+  box-shadow: 0 4px 0 #333c57;
+  touch-action: none;
+}
+#touch button:active { transform: translateY(3px); box-shadow: 0 1px 0 #333c57; }
+#touch button.a { background: #ffcd75; }
+#touch button.b { background: #ef7d57; }
+
+@media (pointer: coarse) {
+  #touch { display: flex; }
+}
+
+#mute {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  border: 2px solid #566c86;
+  background: #333c57;
+  color: #f4f4f4;
+  font: 18px monospace;
+  cursor: pointer;
+  border-radius: 6px;
+}
+#mute.off { opacity: 0.4; text-decoration: line-through; }
