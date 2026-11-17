@@ -52,8 +52,56 @@ canvas {
 #touch button.a { background: #ffcd75; }
 #touch button.b { background: #ef7d57; }
 
-@media (pointer: coarse) {
-  #touch { display: flex; }
+#rotate { display: none; }
+
+/* ---------- phones (body classes are set in main.js) ---------- */
+body.touch canvas { box-shadow: none; }
+body.touch #touch { display: flex; }
+body.touch #wrap { gap: 0; }
+
+/* Portrait: game edge to edge, big buttons in the free space below. */
+body.portrait #wrap { justify-content: flex-start; padding-top: 8px; gap: 14px; }
+body.portrait #touch { max-width: none; padding: 0 20px; }
+body.portrait #rotate {
+  display: block;
+  border: 2px solid #566c86;
+  background: #333c57;
+  color: #ffcd75;
+  font: bold 14px monospace;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin: 0 16px;
+}
+
+/* Landscape: game fills the screen, buttons float over the corners. */
+body.landscape #touch {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  max-width: none;
+  padding: 0 10px;
+  pointer-events: none;
+}
+body.landscape #touch button {
+  pointer-events: auto;
+  width: 54px;
+  height: 54px;
+  opacity: 0.6;
+  font-size: 18px;
+}
+body.landscape #touch .pad { gap: 8px; }
+/* A/B stacked so they fit in the side gutter (B on top, A below). */
+body.landscape #touch .pad:last-child { flex-direction: column; }
+body.landscape #mute {
+  top: 10px;
+  right: 10px;
+  opacity: 0.5;
+}
+body.portrait #mute {
+  top: auto;
+  bottom: 16px;
+  right: 16px;
 }
 
 #mute {
